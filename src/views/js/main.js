@@ -480,10 +480,10 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName('mover');
-
+  var phaseVar = (document.body.scrollTop / 1250);
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin( phaseVar + (i % 5));
     //AP change the position of the pizzas in the background by modifying the position using translateX
     items[i].style.transform = "translateX(" + 100 * phase + "px)";
 }
@@ -504,16 +504,18 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var pizzas = (screen.height / s) * cols;
   var selectContainer = document.getElementById("movingPizzas1");
+  console.log(pizzas);
 
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < pizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     // AP Added left and transform in style
-    elem.style.left =  (i%cols) * 250 +"px";
+    elem.style.left =  (i%cols) * s +"px";
     elem.style.transform= "translateX(30px)";
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     selectContainer.appendChild(elem);
