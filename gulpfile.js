@@ -8,8 +8,8 @@ var connect = require('gulp-connect'),
   newer = require('gulp-newer'),
   cssnano = require('gulp-cssnano'),
   imagemin = require('gulp-imagemin'),
-  htmlcpr = require('gulp-htmlcpr'),
-  htmlmin = require('gulp-htmlmin');
+  htmlmin = require('gulp-htmlmin'),
+  connect = require('gulp-connect');
 
 
   gulp.task('images', function() {
@@ -20,18 +20,10 @@ var connect = require('gulp-connect'),
     .pipe(gulp.dest(out));
 });
 
-// Concatenate & Minify JS
+
 gulp.task('js', function() {
   return gulp.src('src/**/*.js')
     .pipe(uglify())
-    .pipe(gulp.dest('dist/./'));
-});
-
-
-//Para que los html mantengan la referencia del js minificado
-gulp.task('useref', function(){
-  return gulp.src('src/**/*.html')
-    .pipe(useref())
     .pipe(gulp.dest('dist/./'));
 });
 
@@ -47,13 +39,6 @@ gulp.task('minify', function() {
     .pipe(gulp.dest('dist/./'));
 });
 
-
-// Watch Files For Changes
-gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['lint', 'scripts']);
-    gulp.watch('scss/*.scss', ['sass']);
-});
-
 //gulp web server
 gulp.task('webserver', function() {
   connect.server();
@@ -61,4 +46,4 @@ gulp.task('webserver', function() {
 
 
 // Default Task
-gulp.task('default', [ 'js', 'images', 'cssnano']);
+gulp.task('default', [ 'js', 'images', 'cssnano', 'minify']);

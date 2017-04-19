@@ -403,9 +403,11 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
   var allContainers = document.querySelectorAll(".randomPizzaContainer");
   // Changes the value for the size of the pizza above the slider
+
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
+      //AP I reuse this switch to change the sizes of the pizzas and remove the other function.
         document.querySelector("#pizzaSize").innerHTML = "Small";
         allContainers.forEach(function(elem){
           elem.style.width = '25%';
@@ -479,8 +481,10 @@ function updatePositions() {
 
   var items = document.getElementsByClassName('mover');
 
+
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    //AP change the position of the pizzas in the background by modifying the position using translateX
     items[i].style.transform = "translateX(" + 100 * phase + "px)";
 }
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -508,8 +512,9 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.style.transform= "translateX(30px)";
+    // AP Added left and transform in style
     elem.style.left =  (i%cols) * 250 +"px";
+    elem.style.transform= "translateX(30px)";
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     selectContainer.appendChild(elem);
   }
