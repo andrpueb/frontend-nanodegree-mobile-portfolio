@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.style.transform= "translateX(30px)";
-    elem.style.left =  (i%cols) * 200 +"px";
+    elem.style.left =  (i%cols) * 250 +"px";
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     selectContainer.appendChild(elem);
   }
